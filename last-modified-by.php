@@ -1,15 +1,15 @@
 <?php
 /**
  * Plugin Name:     Last Modified By
- * Plugin URI:      
+ * Plugin URI:      https://github.com/erikdmitchell/last-modified-by
  * Description:     Adds a modified by column to the admin columns
  * Author:          Erik Mitchell
- * Author URI:      
+ * Author URI:      http://erikmitchell.net
  * Text Domain:     last-modified-by
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         0.1.1
  *
- * @package         Last_Modified_By
+ * @package         last_modified_by
  */
 
 /**
@@ -25,7 +25,7 @@ final class Last_Modified_By {
      * @var string
      * @access public
      */
-    public $version = '0.1.0';
+    public $version = '0.1.1';
 
     /**
      * Construct function.

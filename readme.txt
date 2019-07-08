@@ -25,6 +25,10 @@ Adds a modified by column to the admin columns
 
 == Changelog ==
 
+= 0.1.1 =
+
+* Updated code to meet standards.
+
 = 0.1.0 =
 
-Initial version of plugin.
+* Initial version of plugin.
