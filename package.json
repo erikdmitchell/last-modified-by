@@ -1,0 +1,52 @@
+{
+  "name": "last-modified-by",
+  "version": "0.1.1",
+  "description": "Adds a modified by column to the admin columns",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Last Modified By\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikdmitchell/last-modified-by.git"
+  },
+  "keywords": [],
+  "author": "Erik Mitchell",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/erikdmitchell/last-modified-by/issues"
+  },
+  "homepage": "https://github.com/erikdmitchell/last-modified-by#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-cache": "^1.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssbeautify": "^1.0.1",
+    "gulp-filter": "^5.1.0",
+    "gulp-ignore": "^2.0.2",
+    "gulp-imagemin": "",
+    "gulp-jsbeautifier": "^3.0.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-load-plugins": "",
+    "gulp-newer": "",
+    "gulp-notify": "",
+    "gulp-phpcbf": "^0.1.2",
+    "gulp-phpcs": "^2.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "",
+    "gulp-stylelint": "^5.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglifycss": "",
+    "gulp-util": "",
+    "gulp-zip": "^3.2.0",
+    "jshint": "",
+    "jshint-stylish": "",
+    "run-sequence": ""
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^2.6.5"
+  }
+}
