@@ -101,11 +101,11 @@ final class Last_Modified_By {
      * @access public
      * @param mixed $column_name string.
      * @param mixed $id post id.
-     * @return html
+     * @return void
      */
     public function column_content( $column_name, $id ) {
         if ( 'modified-by' == $column_name ) :
-            echo $this->construct_modified_by( $id );
+            echo $this->construct_modified_by( $id ); // phpcs:ignore
         endif;
     }
 
@@ -143,7 +143,9 @@ final class Last_Modified_By {
      * @return string
      */
     protected function get_the_modified_author( $post_id = 0 ) {
-        if ( $last_id = get_post_meta( $post_id, '_edit_last', true ) ) :
+        $last_id = get_post_meta( $post_id, '_edit_last', true );
+
+        if ( $last_id ) :
             $last_user = get_userdata( $last_id );
 
             return apply_filters( 'the_modified_author', $last_user->display_name );

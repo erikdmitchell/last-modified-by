@@ -11,7 +11,7 @@
  *
  * @package         last_modified_by
  */
- 
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
     die;
