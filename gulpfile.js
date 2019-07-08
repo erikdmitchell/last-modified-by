@@ -231,7 +231,7 @@ gulp.task('phpcbf', function () {
 // gulp zip
 gulp.task('zip', function () {
   return gulp.src(buildInclude)
-    .pipe(zip('gulp-standards.zip'))
+    .pipe(zip('last-modified-by.zip'))
     .pipe(gulp.dest('./../'));
 });  
 
