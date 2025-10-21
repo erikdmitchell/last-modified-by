@@ -14,7 +14,8 @@
     
 	<!-- Exclude paths --> 
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
-	<exclude-pattern>*/vendor/*</exclude-pattern>    
+	<exclude-pattern>*/vendor/*</exclude-pattern>  
+	<exclude-pattern>*/gulpfile.js</exclude-pattern>    
 
 	<!-- Rules -->
 	<rule ref="PHPCompatibility"/>
@@ -34,9 +35,12 @@
     
     <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
 
-	<rule ref="WordPress.WP.I18n">
-		<properties>
-			<property name="text_domain" type="array" value="last-modified-by" />
-		</properties>
-	</rule>
+    <!-- I18n -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <value>last-modified-by</value>
+            </property>
+        </properties>
+    </rule>
 </ruleset>

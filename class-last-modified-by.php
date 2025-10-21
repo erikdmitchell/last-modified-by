@@ -3,7 +3,7 @@
  * Last Modified By class
  *
  * @package last_modified_by
- * @since   1.0.0
+ * @since   0.1.0
  */
 
 /**
@@ -69,17 +69,49 @@ final class Last_Modified_By {
     }
 
     /**
+     * Check if last-modified-timestamp plugin is active.
+     *
+     * @access public
+     * @return bool
+     */
+    public function is_last_modified_timestamp_active() {
+        return is_plugin_active( 'last-modified-timestamp/last-modified-timestamp.php' ) ||
+                function_exists( 'last_modified_timestamp' ) ||
+                class_exists( 'Last_Modified_Timestamp' );
+    }
+
+    /**
      * Admin actions.
      *
      * @access public
      * @return void
      */
     public function admin_actions() {
-        foreach ( get_post_types() as $pt ) :
-            add_filter( "manage_{$pt}_posts_columns", array( $this, 'column_heading' ), 10, 1 );
-            add_action( "manage_{$pt}_posts_custom_column", array( $this, 'column_content' ), 10, 2 );
-            add_action( "manage_edit-{$pt}_sortable_columns", array( $this, 'column_sort' ), 10, 2 );
-        endforeach;
+        // Include plugin.php if not already included for is_plugin_active function.
+        if ( ! function_exists( 'is_plugin_active' ) ) {
+            include_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+
+        // Only add columns if last-modified-timestamp plugin is not active.
+        if ( ! $this->is_last_modified_timestamp_active() ) {
+            foreach ( get_post_types() as $pt ) :
+                add_filter( "manage_{$pt}_posts_columns", array( $this, 'column_heading' ), 10, 1 );
+                add_action( "manage_{$pt}_posts_custom_column", array( $this, 'column_content' ), 10, 2 );
+                add_action( "manage_edit-{$pt}_sortable_columns", array( $this, 'column_sort' ), 10, 2 );
+            endforeach;
+        } else {
+            $this->init_alternative_functionality();
+        }
+    }
+
+    /**
+     * Initialize alternative functionality when last-modified-timestamp plugin is active.
+     *
+     * @access public
+     * @return void
+     */
+    public function init_alternative_functionality() {
+        add_filter( 'last_modified_timestamp_output', array( $this, 'enhance_timestamp_with_author' ), 10, 2 );
     }
 
     /**
@@ -154,7 +186,43 @@ final class Last_Modified_By {
         return '';
     }
 
+    /**
+     * Enhance timestamp output with author information when last-modified-timestamp plugin is active.
+     *
+     * @access public
+     * @param string $timestamp The original timestamp output.
+     * @param mixed  $context The context (could be post ID or other context data).
+     * @return string Enhanced output with author information.
+     */
+    public function enhance_timestamp_with_author( $timestamp, $context ) {
+        // Try to get post ID from context.
+        $post_id = 0;
+
+        if ( is_numeric( $context ) ) {
+            $post_id = intval( $context );
+        } elseif ( is_array( $context ) && isset( $context['post_id'] ) ) {
+            $post_id = intval( $context['post_id'] );
+        } elseif ( is_object( $context ) && isset( $context->ID ) ) {
+            $post_id = intval( $context->ID );
+        } else {
+            // Try to get current post ID if we're in a post context.
+            global $post;
+
+            if ( $post && isset( $post->ID ) ) {
+                $post_id = $post->ID;
+            }
+        }
+
+        if ( $post_id > 0 ) {
+            $author = $this->get_the_modified_author( $post_id );
+
+            if ( ! empty( $author ) ) {
+                $timestamp .= ' <span class="last-modified-by-author">by ' . esc_html( $author ) . '</span>';
+            }
+        }
+
+        return $timestamp;
+    }
 }
 
 new Last_Modified_By();
-

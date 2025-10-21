@@ -23,5 +23,5 @@ if ( ! defined( 'LAST_MODIFIED_BY_PLUGIN_FILE' ) ) {
 
 // Include the main Last_Modified_By class.
 if ( ! class_exists( 'Last_Modified_By' ) ) {
-    include_once dirname( __FILE__ ) . '/class-last-modified-by.php';
+    include_once __DIR__ . '/class-last-modified-by.php';
 }
