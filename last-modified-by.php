@@ -7,7 +7,7 @@
  * Author URI:      http://erikmitchell.net
  * Text Domain:     last-modified-by
  * Domain Path:     /languages
- * Version:         0.1.1
+ * Version:         0.2.0
  *
  * @package         last_modified_by
  */

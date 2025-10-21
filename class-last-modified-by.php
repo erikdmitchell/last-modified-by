@@ -19,7 +19,7 @@ final class Last_Modified_By {
      * @var string
      * @access public
      */
-    public $version = '0.1.1';
+    public $version = '0.2.0';
 
     /**
      * Construct function.
